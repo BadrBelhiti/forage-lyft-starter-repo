@@ -4,4 +4,4 @@ from service.types import ServiceType
 
 class Nubbin(Battery):
     def __init__(self):
-        super().__init__("Nubbin", ServiceCriteria(ServiceType.TIME, 4))
+        super().__init__("Nubbin", ServiceCriteria(ServiceType.TIME, interval=4))

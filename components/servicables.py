@@ -1,3 +1,4 @@
+from distutils.log import warn
 from typing import Dict
 
 from service.criteria import ServiceCriteria
@@ -23,11 +24,11 @@ class Servicable():
 
         # Service is dependent upon mileage
         elif self.service_criteria.criteria_type == ServiceType.MILES:
-            return current_miles - self.last_service_miles >= self.service_criteria.interval
+            return current_miles - self.last_service_miles > self.service_criteria.interval
 
         # Service is dependent upon time
         elif self.service_criteria.criteria_type == ServiceType.TIME:
-            return current_date.replace(year=current_date.year - self.service_criteria.interval) >= self.last_service_date
+            return current_date.replace(year=current_date.year - self.service_criteria.interval) > self.last_service_date
             
 
 class Engine(Servicable):

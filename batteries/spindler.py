@@ -4,4 +4,4 @@ from service.types import ServiceType
 
 class Spindler(Battery):
     def __init__(self):
-        super().__init__("Spindler", ServiceCriteria(ServiceType.TIME, 2))
+        super().__init__("Spindler", ServiceCriteria(ServiceType.TIME, interval=2))

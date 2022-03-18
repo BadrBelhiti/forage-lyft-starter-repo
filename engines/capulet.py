@@ -4,4 +4,4 @@ from service.types import ServiceType
 
 class Capulet(Engine):
     def __init__(self):
-        super().__init__("Capulet", ServiceCriteria(ServiceType.MILES, 30_000))
+        super().__init__("Capulet", ServiceCriteria(ServiceType.MILES, interval=30_000))
