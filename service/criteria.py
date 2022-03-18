@@ -1,4 +1,4 @@
-from mycode.service.types import ServiceType
+from service.types import ServiceType
 
 from typing import List
 
