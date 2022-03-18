@@ -1,7 +1,7 @@
 from typing import Dict, List
 from datetime import datetime, date
 
-from components.servicables import Servicable
+from components.servicables import Servicable, Tires
 
 class Car:
     def __init__(self, name: str, components: Dict[str, Servicable], current_miles: int, last_service_miles: int, last_service_date: date):
@@ -33,6 +33,10 @@ class Car:
 
     def replace_components(self, component_type: str, component: Servicable) -> None:
         self._components[component_type] = component
+
+    def set_tire_wear(self, wear: List[float]) -> None:
+        tires: Tires = self._components["tires"]
+        tires.set_wear(wear)
 
     def get_miles(self) -> int:
         return self._miles

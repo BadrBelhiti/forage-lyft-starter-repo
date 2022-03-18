@@ -1,11 +1,10 @@
-from distutils.log import warn
-from typing import Dict
+from typing import Dict, List
 
 from service.criteria import ServiceCriteria
 from service.types import ServiceType
 from datetime import date
 
-class Servicable():
+class Servicable:
     def __init__(self, name: str, service_criteria: ServiceCriteria):
         self.name = name
         self.service_criteria = service_criteria
@@ -38,3 +37,23 @@ class Engine(Servicable):
 class Battery(Servicable):
     def __init__(self, name, service_criteria):
         super().__init__(name, service_criteria)
+
+class Tires(Servicable):
+    def __init__(self, name, service_criteria):
+        super().__init__(name, service_criteria)
+        self.wear = [0] * 4
+
+    def get_wear(self) -> List[float]:
+        return self.wear
+
+    def set_wear(self, wear: List[float]) -> None:
+        self.wear = wear
+
+    def needs_service(self, current_miles: int, current_date: date, warning_lights: Dict[str, bool]) -> bool:
+        # Service is dependent upon max of wear array
+        if self.service_criteria.criteria_type == ServiceType.MAX_ARRAY:
+            return max(self.wear) > self.service_criteria.threshold
+
+        # Service is dependent upon sum of wear array
+        elif self.service_criteria.criteria_type == ServiceType.SUM_ARRAY:
+            return sum(self.wear) > self.service_criteria.threshold
